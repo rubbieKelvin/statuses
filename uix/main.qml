@@ -1,6 +1,6 @@
 import QtQuick 2.15
-import StuffsByRubbie 0.1
 import QtQuick.Controls 2.15
+import StuffsByRubbie 0.1
 
 import "./components/utils"
 
@@ -13,6 +13,13 @@ ApplicationWindow {
     flags: Qt.Window | Qt.MaximizeUsingFullscreenGeometryHint
     property Theme theme: Theme {}
     property string currentSource: ""
+
+    StatusBar {
+        id: statusbar
+        color: application.theme.bg
+        theme: StatusBar.Dark
+    }
+
     background: Rectangle {
         color: "white"
     }
@@ -20,12 +27,6 @@ ApplicationWindow {
     FontLoader {
         id: montserrat
         source: "./fonts/Montserrat/Montserrat-Regular.ttf"
-    }
-
-    StatusBar {
-        id: statusbar
-        color: application.theme.bg
-        theme: StatusBar.Dark
     }
 
     StackView {

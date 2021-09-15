@@ -30,7 +30,10 @@ Page {
                         }).width
                 onClicked: {
                     application.currentSource = filename
-                    mainstack.push('./one.qml')
+                    mainstack.push('./one.qml', {
+                                       "model": whatsapp.getStatuses(),
+                                       "current": filename
+                                   })
                 }
             }
 

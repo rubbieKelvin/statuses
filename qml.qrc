@@ -38,11 +38,14 @@
         <file>uix/components/widgets/NavBar.qml</file>
         <file>uix/components/widgets/NavChip.qml</file>
         <file>uix/components/widgets/ItemMenu.qml</file>
-        <file>uix/components/widgets/ControlPane.qml</file>
         <file>uix/components/pages/saved.qml</file>
         <file>uix/components/pages/one.qml</file>
         <file>uix/components/pages/today.qml</file>
         <file>uix/components/widgets/EmptyState.qml</file>
         <file>uix/workers/foldermodel.mjs</file>
+        <file>uix/components/pages/MediaPage.qml</file>
+        <file>uix/components/widgets/SnackBar.qml</file>
+        <file>uix/components/widgets/VideoControl.qml</file>
+        <file>uix/components/widgets/DurationSlider.qml</file>
     </qresource>
 </RCC>

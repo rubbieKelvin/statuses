@@ -8,11 +8,18 @@
 
 namespace paths {
     QString device_home = QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation);
-    QString data_home = QStandardPaths::writableLocation(QStandardPaths::AppDataLocation);
+    QString data_home = QStandardPaths::writableLocation(QStandardPaths::PicturesLocation);
+    QString wsp_cache = "";
+    QString ssp_cache = "";
 
     QString whatsapp_status_path(){
         // androis 10 and up
-        QString p = QDir::cleanPath(device_home+"/Andrioid/media/com.whatsapp/WhatsApp/Media/.Statuses");
+
+        if (wsp_cache!="") return wsp_cache;
+
+        QString p = QDir::cleanPath(device_home+"/Android/media/com.whatsapp/WhatsApp/Media/.Statuses");
+
+        qDebug() << "Android 10+ path: " << p;
 
         if (! QDir(p).exists()){
             // android 9 and below
@@ -20,29 +27,28 @@ namespace paths {
         }
 
         qDebug() << "Whatsapp path: " << p;
+        wsp_cache = p;
         return p;
     }
 
     QString status_saver_path(){
+        if (ssp_cache!="") return ssp_cache;
+
         QString p {QDir::cleanPath(data_home)};
         if (! QDir(p).exists()) QDir().mkdir(p);
 
         // this is the actual status saving path
-        p = QDir::cleanPath(p+"/.statuses");
+        p = QDir::cleanPath(p+"/Statuses");
         if (! QDir(p).exists()) QDir().mkdir(p);
 
-        // create a .nomedia file: to hife media on android
-        // and to prevent populating the users gallery
-        QFile file(QDir::cleanPath(p+"/.nomedia"));
-        if (! file.exists()) file.open(QIODevice::WriteOnly);
-
         qDebug() << p;
+        ssp_cache = p;
         return p;
     }
 }
 
 Whatsapp::Whatsapp(QObject *parent) : QObject(parent){
-    filters << "*.mp4" << "*.jpg" << "*.jpeg" << "*.png" << "*.gif";
+    filters << "*.mp4" << "*.jpg" << "*.jpeg" << "*.png" << "*.gif" << ".avi";
 }
 
 

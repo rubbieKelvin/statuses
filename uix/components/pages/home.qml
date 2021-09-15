@@ -1,4 +1,5 @@
 import QtQuick 2.15
+import StuffsByRubbie 0.1
 import QtQuick.Controls 2.15
 
 import "../utils"
@@ -31,6 +32,7 @@ Page {
             }
         }
     }
+
     background: Rectangle {
         color: application.theme.bg
     }
@@ -48,13 +50,10 @@ Page {
         anchors.horizontalCenter: parent.horizontalCenter
 
         onCurrentChanged: {
-            if (stack.depth > 1)
-                stack.pop()
-
             if (current == "Today")
-                stack.push("./today.qml")
+                stack.replace("./today.qml")
             else if (current == "Saved")
-                stack.push("./saved.qml")
+                stack.replace("./saved.qml")
         }
     }
 }

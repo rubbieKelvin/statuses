@@ -27,15 +27,7 @@ Rectangle {
     signal requestRemoval
 
     property string source
-    readonly property string mediaType: {
-        if (root.source.endsWith(".gif")) {
-            return "GIF"
-        } else if (root.source.endsWith(".mp4")) {
-            return "VIDEO"
-        } else {
-            return "IMAGE"
-        }
-    }
+    readonly property string mediaType: Helper.mediaType(source)
 
     Item {
         id: media_body
